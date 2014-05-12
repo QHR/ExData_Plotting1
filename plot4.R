@@ -17,6 +17,7 @@ en <- as.POSIXct("2007-02-02 23:59:59")
 raw2 <- raw[raw$x > st & raw$x < en, ]
 
 ##Create Plot 4
+png(file = "plot4.png")
 par(mfrow = c(2, 2))
 with(raw2, {
   plot(raw2$x, raw2$Global_active_power, type = "s", xlab = "", 
@@ -27,10 +28,10 @@ with(raw2, {
        ylab = "Energy sub metering")
   lines(raw2$x,raw2$Sub_metering_2,col="red")
   lines(raw2$x,raw2$Sub_metering_3,col="blue")
-  legend("topright", lty = 1, col = c("black", "red", "blue"), 
+  legend("topright", lty = 1, col = c("black", "red", "blue"), cex=0.75, 
+         bty = "n", 
          legend = c("Sub_Metering_1", "Sub_Metering_2", "Sub_Metering_3"))
   plot(raw2$x, raw2$Global_reactive_power, type = "s", xlab = "datetime", 
        ylab = "Global_reactive_power")
 })
-dev.copy(png, file = "plot4.png", width = 480, height = 480)
 dev.off()
